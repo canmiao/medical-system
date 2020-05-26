@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.business.mapper.SportDataMapper">
+  <resultMap id="BaseResultMap" type="com.business.bean.SportData">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="patient_id" jdbcType="BIGINT" property="patientId" />
+    <result column="waist_right_azimuth" jdbcType="VARCHAR" property="waistRightAzimuth" />
+    <result column="waist_right_pitch" jdbcType="VARCHAR" property="waistRightPitch" />
+    <result column="waist_right_roll" jdbcType="VARCHAR" property="waistRightRoll" />
+    <result column="waist_left_azimuth" jdbcType="VARCHAR" property="waistLeftAzimuth" />
+    <result column="waist_left_pitch" jdbcType="VARCHAR" property="waistLeftPitch" />
+    <result column="waist_left_roll" jdbcType="VARCHAR" property="waistLeftRoll" />
+    <result column="thigh_right_azimuth" jdbcType="VARCHAR" property="thighRightAzimuth" />
+    <result column="thigh_right_pitch" jdbcType="VARCHAR" property="thighRightPitch" />
+    <result column="thigh_right_roll" jdbcType="VARCHAR" property="thighRightRoll" />
+    <result column="thigh_left_azimuth" jdbcType="VARCHAR" property="thighLeftAzimuth" />
+    <result column="thigh_left_pitch" jdbcType="VARCHAR" property="thighLeftPitch" />
+    <result column="thigh_left_roll" jdbcType="VARCHAR" property="thighLeftRoll" />
+    <result column="calf_right_azimuth" jdbcType="VARCHAR" property="calfRightAzimuth" />
+    <result column="calf_right_pitch" jdbcType="VARCHAR" property="calfRightPitch" />
+    <result column="calf_right_roll" jdbcType="VARCHAR" property="calfRightRoll" />
+    <result column="calf_left_azimuth" jdbcType="VARCHAR" property="calfLeftAzimuth" />
+    <result column="calf_left_pitch" jdbcType="VARCHAR" property="calfLeftPitch" />
+    <result column="calf_left_roll" jdbcType="VARCHAR" property="calfLeftRoll" />
+    <result column="upper_arm_right_azimuth" jdbcType="VARCHAR" property="upperArmRightAzimuth" />
+    <result column="upper_arm_right_pitch" jdbcType="VARCHAR" property="upperArmRightPitch" />
+    <result column="upper_arm_right_roll" jdbcType="VARCHAR" property="upperArmRightRoll" />
+    <result column="upper_arm_left_azimuth" jdbcType="VARCHAR" property="upperArmLeftAzimuth" />
+    <result column="upper_arm_left_pitch" jdbcType="VARCHAR" property="upperArmLeftPitch" />
+    <result column="upper_arm_left_roll" jdbcType="VARCHAR" property="upperArmLeftRoll" />
+    <result column="forearm_right_azimuth" jdbcType="VARCHAR" property="forearmRightAzimuth" />
+    <result column="forearm_right_pitch" jdbcType="VARCHAR" property="forearmRightPitch" />
+    <result column="forearm_right_roll" jdbcType="VARCHAR" property="forearmRightRoll" />
+    <result column="forearm_left_azimuth" jdbcType="VARCHAR" property="forearmLeftAzimuth" />
+    <result column="forearm_left_pitch" jdbcType="VARCHAR" property="forearmLeftPitch" />
+    <result column="forearm_left_roll" jdbcType="VARCHAR" property="forearmLeftRoll" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+</mapper>

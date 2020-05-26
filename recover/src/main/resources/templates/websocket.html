@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>首页</title>
+</head>
+
+
+
+<style type="text/css">
+    #container {
+        margin-top: 20px;
+        width: 100%;
+        border: 0px solid deepskyblue;
+    }
+
+    .top {
+        width: 95%;
+        border-bottom: 1px solid darkgoldenrod;
+        height: 100px;
+        line-height: 100px;
+        padding-left: 40px;
+        font-size: 32px;
+        font-weight: bold;
+    }
+
+    .main {
+        width: 100%;
+        border: 0px solid deeppink;
+        height: 350px;
+    }
+
+    .light {
+        width: 300px;
+        height: 300px;
+        border: 1px solid gainsboro;
+        display: inline-block;
+        margin: 18px 13px;
+    }
+
+    .bottom {
+        width: 95%;
+        border: 0px solid greenyellow;
+        height: 100px;
+        line-height: 100px;
+        padding-left: 40px;
+        font-size: 32px;
+        font-weight: bold;
+    }
+
+    .im {
+        width: 200px;
+        height: 200px;
+        border: 0px solid #ADFF2F;
+        margin-left: 50px;
+        margin-top: 20px;
+    }
+
+    .image {
+        width: 100%;
+        height: 100%;
+    }
+
+    .bot {
+        width: 45px;
+        height: 45px;
+        border: 0px solid darkslateblue;
+        margin-left: 200px;
+        margin-top: 15px;
+    }
+</style>
+
+<body>
+<div id="container">
+    <div class="top">
+        温度监测及灯控系统
+    </div>
+
+    <div class="main">
+        <div class="light">
+            <div class="im">
+                <img id="img1" src="img/bulb.png" class="image"/>
+            </div>
+            <div class="bot">
+                <img id="btn" src="img/toggle-left.png" class="image"/>
+            </div>
+        </div>
+        <div class="light">
+            <div class="im">
+                <img id="img2" src="img/filter_vintage.png" class="image"/>
+            </div>
+            <div class="bot">
+                <img id="ctn" src="img/toggle-left.png" class="image"/>
+            </div>
+        </div>
+        <div class="light">
+            <div class="im">
+                <img id="img3" src="img/light-bulb.png" class="image"/>
+            </div>
+            <div class="bot">
+                <img id="dtn" src="img/toggle-left.png" class="image"/>
+            </div>
+        </div>
+        <div class="light">
+            <div class="im">
+                <img id="img4" src="img/wb_incandescent.png" class="image"/>
+            </div>
+            <div class="bot">
+                <img id="etn" src="img/toggle-left.png" class="image"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom">
+        实时温度：<span id="message">0</span>℃
+    </div>
+</div>
+
+
+
+
+<script>
+    var websocket = null;
+    if ('WebSocket' in window) {
+        websocket = new WebSocket("ws://localhost:8088/websocket/1");
+    } else {
+        alert("您的浏览器不支持websocket");
+    }
+    websocket.onerror = function () {
+        setMessageInHtml("send error！");
+    }
+    websocket.onopen = function () {
+        //setMessageInHtml("connection success！")
+    }
+    websocket.onmessage = function (event) {
+        setMessageInHtml(event.data);
+    }
+    websocket.onclose = function () {
+        setMessageInHtml("closed websocket!")
+    }
+    window.onbeforeunload = function () {
+        clos();
+    }
+
+    function setMessageInHtml(message) {
+        document.getElementById('message').innerHTML = message;
+    }
+
+    function clos() {
+        websocket.close(3000, "强制关闭");
+    }
+
+    function send() {
+        var msg = document.getElementById('text').value;
+        websocket.send(msg);
+    }
+
+
+    var a = 1, b = 2, c = 3, d = 4;
+    //灯1
+    var btn = document.getElementById("btn");
+    var element1 = document.getElementById('img1');
+    var element2 = document.getElementById('btn');
+    btn.onclick = function () {
+        if (a == 1) {
+            websocket.send(a);
+            a = 5;
+            element1.src = "img/bulbc.png";
+            element2.src = "img/toggle-right.png";
+        } else if (a == 5) {
+            websocket.send(a);
+            a = 1;
+            element1.src = "img/bulb.png";
+            element2.src = "img/toggle-left.png";
+        }
+    }
+
+    //灯2
+    var ctn = document.getElementById("ctn");
+    var element3 = document.getElementById('img2');
+    var element4 = document.getElementById('ctn');
+    ctn.onclick = function () {
+        if (b == 2) {
+            websocket.send(b);
+            b = 6;
+            element3.src = "img/filter_vintagec.png";
+            element4.src = "img/toggle-right.png";
+        } else if (b == 6) {
+            websocket.send(b);
+            b = 2;
+            element3.src = "img/filter_vintage.png";
+            element4.src = "img/toggle-left.png";
+        }
+    }
+
+    //灯3
+    var dtn = document.getElementById("dtn");
+    var element5 = document.getElementById('img3');
+    var element6 = document.getElementById('dtn');
+    dtn.onclick = function () {
+        if (c == 3) {
+            websocket.send(c);
+            c = 7;
+            element5.src = "img/light-bulbc.png";
+            element6.src = "img/toggle-right.png";
+        } else if (c == 7) {
+            websocket.send(c);
+            c = 3;
+            element5.src = "img/light-bulb.png";
+            element6.src = "img/toggle-left.png";
+        }
+    }
+
+    //灯4
+    var etn = document.getElementById("etn");
+    var element7 = document.getElementById('img4');
+    var element8 = document.getElementById('etn');
+    etn.onclick = function () {
+        if (d == 4) {
+            websocket.send(d);
+            d = 8;
+            element7.src = "img/wb_incandescentc.png";
+            element8.src = "img/toggle-right.png";
+        } else if (d == 8) {
+            websocket.send(d);
+            d = 4;
+            element7.src = "img/wb_incandescent.png";
+            element8.src = "img/toggle-left.png";
+        }
+    }
+</script>
+
+</body>
+</html>
